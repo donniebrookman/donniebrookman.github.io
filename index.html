@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#141413">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Vail · July 10–12</title>
+<style>
+  :root{
+    --bg:#141413;
+    --card:#1f1e1c;
+    --card2:#262523;
+    --border:#33312e;
+    --text:#eceae6;
+    --muted:#9a9790;
+    --accent:#e07a4a;
+    --accent-soft:rgba(224,122,74,.14);
+    --warn:#e0a04a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+    line-height:1.5;padding-bottom:60px;
+  }
+  .wrap{max-width:480px;margin:0 auto}
+
+  /* HERO */
+  .hero{position:relative;height:62vh;min-height:420px;max-height:560px;overflow:hidden}
+  .hero img{width:100%;height:100%;object-fit:cover;filter:brightness(.62) saturate(.9)}
+  .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,19,.25) 0%,rgba(20,20,19,.05) 40%,var(--bg) 100%)}
+  .hero .content{position:absolute;left:0;right:0;bottom:24px;padding:0 24px}
+  .kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:10px}
+  h1{font-size:40px;line-height:1.05;font-weight:700;letter-spacing:-.02em}
+  h1 span{color:var(--accent)}
+  .sub{margin-top:10px;color:var(--muted);font-size:14px}
+  .chips{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+  .chip{font-size:12px;padding:6px 12px;border-radius:100px;border:1px solid var(--border);background:rgba(31,30,28,.75);backdrop-filter:blur(8px);color:var(--text)}
+  .chip b{color:var(--accent);font-weight:600}
+
+  /* NAV */
+  .daynav{display:flex;gap:8px;padding:16px 20px 4px;position:sticky;top:0;z-index:10;background:linear-gradient(180deg,var(--bg) 78%,transparent)}
+  .daynav a{flex:1;text-align:center;text-decoration:none;color:var(--muted);font-size:13px;font-weight:600;padding:10px 0;border:1px solid var(--border);border-radius:12px;background:var(--card)}
+  .daynav a em{display:block;font-style:normal;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:2px}
+
+  /* SECTIONS */
+  section{padding:28px 20px 8px}
+  .banner{position:relative;border-radius:20px;overflow:hidden;height:190px;margin-bottom:20px;border:1px solid var(--border)}
+  .banner img{width:100%;height:100%;object-fit:cover;filter:brightness(.68)}
+  .banner .label{position:absolute;left:16px;bottom:14px;right:16px}
+  .banner .date{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+  .banner h2{font-size:26px;font-weight:700;letter-spacing:-.01em;text-shadow:0 1px 12px rgba(0,0,0,.7)}
+  .banner .grad{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(20,20,19,.85) 100%)}
+
+  /* TIMELINE */
+  .timeline{position:relative;padding-left:18px}
+  .timeline::before{content:"";position:absolute;left:4px;top:8px;bottom:8px;width:1px;background:var(--border)}
+  .item{position:relative;padding:0 0 22px 16px}
+  .item::before{content:"";position:absolute;left:-18px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+  .item.key::before{background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+  .time{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.06em;text-transform:uppercase}
+  .item h3{font-size:16px;font-weight:600;margin:2px 0 3px}
+  .item p{font-size:14px;color:var(--muted)}
+  .item a{color:var(--accent);text-decoration:none;font-weight:500}
+
+  /* CARDS */
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;margin:0 0 14px}
+  .card.alert{border-color:rgba(224,122,74,.45);background:linear-gradient(180deg,var(--accent-soft),var(--card))}
+  .card h4{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+  .card p,.card li{font-size:14px;color:var(--text)}
+  .card p+p{margin-top:8px}
+  .card ul{list-style:none}
+  .card li{padding:5px 0 5px 22px;position:relative;color:var(--muted)}
+  .card li::before{content:"—";position:absolute;left:0;color:var(--accent)}
+  .card li b{color:var(--text);font-weight:600}
+  .footer{padding:32px 20px 20px;text-align:center;color:var(--muted);font-size:12px}
+  .footer b{color:var(--accent)}
+  .divider{height:1px;background:var(--border);margin:20px 20px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="https://images.unsplash.com/photo-1668033192213-2186ca720803?q=70&w=900&auto=format&fit=crop" alt="Vail valley river">
+    <div class="overlay"></div>
+    <div class="content">
+      <div class="kicker">July 10 – 12 · 2026</div>
+      <h1>Vail,<br>Colorado<span>.</span></h1>
+      <div class="sub">Callie &amp; Jacob's Wedding · Camp Hale · Gore Creek</div>
+      <div class="chips">
+        <div class="chip">🏔 <b>8,150 ft</b> elevation</div>
+        <div class="chip">☀ <b>75° / 45°</b> typical</div>
+        <div class="chip">🌦 <b>PM storms</b> common</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY NAV -->
+  <nav class="daynav">
+    <a href="#fri"><em>Fri 10</em>Wedding</a>
+    <a href="#sat"><em>Sat 11</em>Fishing</a>
+    <a href="#sun"><em>Sun 12</em>Home</a>
+  </nav>
+
+  <!-- FRIDAY -->
+  <section id="fri">
+    <div class="banner">
+      <img src="https://images.unsplash.com/photo-1498252538543-fc27aee78db2?q=70&w=900&auto=format&fit=crop" alt="Alpine meadow near Vail">
+      <div class="grad"></div>
+      <div class="label">
+        <div class="date">Friday · July 10</div>
+        <h2>Fly In → Say "I Do"</h2>
+      </div>
+    </div>
+
+    <div class="card alert">
+      <h4>⚠ Tight Timeline</h4>
+      <p>Carry-on only + rental counter skip = roughly a <b>75–90 min buffer</b> before the wedding shuttle — enough to check in and change without rushing. If a flight runs late, change at the airport and drive straight to Vail Village instead.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="item"><div class="time">5:30 AM ET</div><h3>Uber pickup at home</h3><p>Scheduled → MCO · TSA Pre✓ · tight but you've got it</p></div>
+      <div class="item"><div class="time">7:00 AM ET</div><h3>MCO → MSP · DL 1250</h3><p>Lands Minneapolis 9:26 AM CT · 1h34m layover</p></div>
+      <div class="item"><div class="time">11:00 AM CT</div><h3>MSP → DEN · DL 2927</h3><p>Lands Denver 12:05 PM MT</p></div>
+      <div class="item"><div class="time">12:15 PM</div><h3>Rental car pickup</h3><p>Train to terminal → rental shuttle · carry-on only, ~40 min total</p></div>
+      <div class="item"><div class="time">12:45 PM</div><h3>Drive I-70 West → Vail</h3><p>~120 mi · ~2 hrs. Friday summer traffic can add 30+ min</p></div>
+      <div class="item"><div class="time">~3:00 PM</div><h3>Streamside at Vail</h3><p>2264 S Frontage Rd W · Check-in 4 PM — <a href="tel:19704766000">call ahead</a> for early check-in, then change</p></div>
+      <div class="item key"><div class="time">4:15 PM · Hard Deadline</div><h3>Be at The Lodge at Vail</h3><p>174 Gore Creek Dr, Vail Village · 7 min drive · park in Vail Village structure · <a href="https://maps.apple.com/?q=The+Lodge+at+Vail">Map</a></p></div>
+      <div class="item key"><div class="time">4:30 PM</div><h3>Shuttle → Camp Hale</h3><p>~30 min winding highway — driving yourself is discouraged</p></div>
+      <div class="item key"><div class="time">5:30 – 11:00 PM</div><h3>The Wedding 🥂</h3><p>Camp Hale · 7088 US-24, Red Cliff · Outdoor ceremony &amp; reception · Semi-formal · Return shuttles loop 8–11 PM</p></div>
+    </div>
+
+    <div class="card">
+      <h4>Dress Code</h4>
+      <ul>
+        <li><b>Semi-formal</b> — suit for men</li>
+        <li>Outdoor everything — <b>no stilettos</b>; flats, wedges, block heels</li>
+        <li><b>Light jacket</b> — it drops to the 40s after sunset</li>
+        <li>Adults-only celebration</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SATURDAY -->
+  <section id="sat">
+    <div class="banner">
+      <img src="https://images.unsplash.com/photo-1551722696-d20b4cb374e2?q=70&w=900&auto=format&fit=crop" alt="Fly fishing a Colorado river">
+      <div class="grad"></div>
+      <div class="label">
+        <div class="date">Saturday · July 11</div>
+        <h2>Waders On</h2>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="item key"><div class="time">~8:00 AM · Confirm</div><h3>¾-Day Wade Trip · Vail Valley Anglers</h3><p>Up to 6 hrs on the water · check confirmation email for exact meet time &amp; spot · <a href="tel:19709260900">970-926-0900</a></p></div>
+      <div class="item"><div class="time">~2:30 PM</div><h3>Recover in style</h3><p>Pool, hot tub &amp; sauna at Streamside — or stroll Vail Village</p></div>
+      <div class="item key"><div class="time">7:15 PM</div><h3>Dinner · Mountain Standard 🐖</h3><p>Party of 4 — you, your husband &amp; the in-laws · 193 Gore Creek Dr, Vail Village · wood-fired, creekside · <a href="https://maps.apple.com/?q=Mountain+Standard+Vail">Map</a></p></div>
+    </div>
+
+    <div class="card">
+      <h4>Pack for the River</h4>
+      <ul>
+        <li>Fishing licenses — <b>packed ✓</b></li>
+        <li>Cash for <b>guide gratuity</b> (15–20% customary)</li>
+        <li>Waders, boots, rods &amp; water are <b>provided</b></li>
+        <li><b>Socks</b> for the waders — feet get cold first</li>
+        <li>Breathable shirt or <b>sun hoody</b></li>
+        <li>Light <b>fleece</b> — cold mornings</li>
+        <li>Packable <b>rain jacket</b></li>
+        <li><b>Polarized sunglasses</b> + hat + sunscreen</li>
+        <li>Forgot something? Their shop can outfit you — arrive early</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SUNDAY -->
+  <section id="sun">
+    <div class="banner">
+      <img src="https://images.unsplash.com/photo-1731445289819-ed2efbdb9d83?q=70&w=900&auto=format&fit=crop" alt="Colorado mountains at sunrise">
+      <div class="grad"></div>
+      <div class="label">
+        <div class="date">Sunday · July 12</div>
+        <h2>Sunrise Exit</h2>
+      </div>
+    </div>
+
+    <div class="card alert">
+      <h4>⚠ Early Departure</h4>
+      <p>Your flight leaves Denver at <b>9:19 AM MT</b> — that means wheels rolling out of Vail by <b>5:15 AM</b>. Pack the car and gas up Saturday night. Use express checkout.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="item key"><div class="time">5:15 AM</div><h3>Depart Streamside</h3><p>I-70 East is empty at this hour · ~1h50m to DEN</p></div>
+      <div class="item"><div class="time">~7:15 AM</div><h3>Return rental car</h3><p>Tank full · shuttle/train to terminal</p></div>
+      <div class="item key"><div class="time">9:19 AM MT</div><h3>DEN → MSP · DL 1675</h3><p>Connect in Minneapolis</p></div>
+      <div class="item"><div class="time">12:45 PM CT</div><h3>MSP → MCO · DL 2225</h3><p>Home to Orlando 🌴</p></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- KNOW BEFORE YOU GO -->
+  <section>
+    <div class="card">
+      <h4>🏔 Altitude — Start Now</h4>
+      <p>You're going sea level → <b>9,200 ft</b> (Camp Hale) in one day. Hydrate heavily starting today, go easy on alcohol at the wedding, and expect mild headache or fatigue day one.</p>
+    </div>
+    <div class="card">
+      <h4>🌦 Weather</h4>
+      <p>Highs ~75°F, lows ~45°F. Afternoon thunderstorms are routine — your rain layer covers both the outdoor wedding and the river.</p>
+    </div>
+    <div class="card">
+      <h4>📵 Spotty Service</h4>
+      <p>Cell coverage fades around Camp Hale / Red Cliff. <b>Screenshot this page</b>, shuttle times, and addresses before Friday evening.</p>
+    </div>
+    <div class="card">
+      <h4>🏨 Streamside at Vail</h4>
+      <ul>
+        <li>Free parking · full kitchen · pool, hot tub, sauna</li>
+        <li>Free village shuttle 10a–8p Fri · 8a–8p Sat/Sun</li>
+        <li>Checkout 10 AM (you'll beat it Sunday)</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="footer">Built for <b>Donnie</b> · All times local unless noted · Safe travels ✈</div>
+</div>
+</body>
+</html>
